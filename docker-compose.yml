@@ -1,0 +1,21 @@
+version: "3"
+services:
+  user:
+    build: 
+      context: "."
+      target: "user"
+    depends_on:
+      - user_db
+    environment:
+      - SRV_USER_ADDRESS=127.0.0.1
+      - SRV_USER_PORT=8081
+      - SRV_USER_DB_CONNECTION_STRING=postgres://postgres:postgres@user_db
+      - SRV_USER_DB_MAX_CONNECTIONS=10
+  user_db:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
