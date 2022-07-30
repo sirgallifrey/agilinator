@@ -1,5 +1,6 @@
 [workspace]
 members = [
-  "srv_*",
+  "srv_*/fn_*",
+  "srv_*/lib_*",
 ]
 resolver = "2"
